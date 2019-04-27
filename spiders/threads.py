@@ -3,7 +3,7 @@ import scrapy
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.selector import Selector
-from reddit.items import CommentItem 
+from reddit.items import CommentItem
 from scrapy.contrib.loader import ItemLoader
 from scrapy.contrib.loader.processor import MapCompose, TakeFirst, Compose, Join, Identity
 from reddit import utils
@@ -33,8 +33,7 @@ class ThreadsSpider(CrawlSpider):
     name = "threads"
     allowed_domains = ["reddit.com"]
     start_urls = (
-        "https://www.reddit.com/user/dogetipbot/comments/",
-#        "https://www.reddit.com/r/dogecoin/comments/46bn19/do_you_think_there_would_be_any_interest_if_i/",
+        "https://www.reddit.com/r/",  #Enter Reddit thread here
     )
 
     rules = (
@@ -70,4 +69,3 @@ class ThreadsSpider(CrawlSpider):
             l.add_value("time", row.xpath(".//p[@class='tagline']/time/@title").extract())
 
             yield l.load_item()
-
